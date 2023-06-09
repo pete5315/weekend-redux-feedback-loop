@@ -1,4 +1,4 @@
-function Submitted() {
+function Review() {
 
   return (
 
@@ -7,4 +7,4 @@ function Submitted() {
   );
 }
 
-export default Submitted;
+export default Review;

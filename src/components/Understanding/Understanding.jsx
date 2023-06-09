@@ -3,40 +3,42 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 
-function Feelings() {
+function Understanding() {
 
-  let [feeling, setNewFeeling] = useState({ feeling: "" });
+  let [support, setNewSupport] = useState({ support: "" });
   const dispatch=useDispatch();
   const history = useHistory()
 
 
-  const handleNewFeeling = (value, event) => {
+  const handleNewSupport = (value, event) => {
     event.preventDefault();
-    setNewFeeling({
-      feeling: value,
-    });
+    if ((0<value && value<6) || value==="") {
+      setNewSupport({
+        support: value,
+      });  
+    }
   }
   const handleSubmit = (event) => {
     event.preventDefault();
 
     dispatch({
       type: "SEND_FEEDBACK",
-      payload: feeling
+      payload: support
     })
-    history.push('/understanding')
+    history.push('/support')
 
   };
 
   return (
     <div>
-      <h1>How are you feeling today?</h1>
+      <h1>How well are you being supported?</h1>
       <form onSubmit={handleSubmit}>
-        <label>Feeling? </label>
+        <label>Understanding (1-5)? </label>
         <input
-          onChange={(event) => handleNewFeeling(event.target.value, event)}
-          type="text"
+          onChange={(event) => handleNewSupport(event.target.value, event)}
+          type="integer"
           placeholder="name"
-          value={feeling.feeling}
+          value={support.support}
         />
         <button type="submit">Next</button>
       </form>
@@ -44,4 +46,4 @@ function Feelings() {
   );
 }
 
-export default Feelings;
+export default Understanding;

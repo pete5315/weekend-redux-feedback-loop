@@ -5,7 +5,7 @@ import Comments from '../Comments/Comments';
 import Feeling from '../Feeling/Feeling'
 import Submitted from '../Submitted/Submitted';
 import Support from '../Support/Support';
-import Understanding from '../Undestanding/Understanding';
+import Understanding from '../Understanding/Understanding';
 import Review from '../Review/Review'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
@@ -24,10 +24,10 @@ function App() {
         <Route exact path="/">
           <Feeling />
         </Route>
-        <Route path="/support">
+        <Route path="/understanding">
           <Understanding />
         </Route>
-        <Route path="/comments">
+        <Route path="/support">
           <Support />
         </Route>
         <Route path="/comments">

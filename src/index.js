@@ -17,7 +17,7 @@ const feedback = (state = [], action) => {
 
 const currentInfo = (state = [], action) => {
   if (action.type === `SEND_FEEDBACK`) {
-    return  action.payload
+    return  {...state, ...action.payload}
   }
   return state;
 };

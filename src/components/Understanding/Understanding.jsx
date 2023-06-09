@@ -5,16 +5,16 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function Understanding() {
 
-  let [support, setNewSupport] = useState({ support: "" });
+  let [understanding, setNewUnderstanding] = useState({ understanding: "" });
   const dispatch=useDispatch();
   const history = useHistory()
 
 
-  const handleNewSupport = (value, event) => {
+  const handleNewUnderstanding = (value, event) => {
     event.preventDefault();
     if ((0<value && value<6) || value==="") {
-      setNewSupport({
-        support: value,
+      setNewUnderstanding({
+        understanding: value,
       });  
     }
   }
@@ -23,7 +23,7 @@ function Understanding() {
 
     dispatch({
       type: "SEND_FEEDBACK",
-      payload: support
+      payload: understanding
     })
     history.push('/support')
 
@@ -31,14 +31,14 @@ function Understanding() {
 
   return (
     <div>
-      <h1>How well are you being supported?</h1>
+      <h1>How well are you understanding the content?</h1>
       <form onSubmit={handleSubmit}>
         <label>Understanding (1-5)? </label>
         <input
-          onChange={(event) => handleNewSupport(event.target.value, event)}
+          onChange={(event) => handleNewUnderstanding(event.target.value, event)}
           type="integer"
           placeholder="name"
-          value={support.support}
+          value={understanding.understanding}
         />
         <button type="submit">Next</button>
       </form>

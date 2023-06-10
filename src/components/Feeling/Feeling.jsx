@@ -34,7 +34,7 @@ function Feelings() {
         <label>Feeling? </label>
         <input
           onChange={(event) => handleNewFeeling(event.target.value, event)}
-          type="text"
+          type="integer"
           placeholder="name"
           value={feeling.feeling}
         />

@@ -19,6 +19,11 @@ const currentInfo = (state = [], action) => {
   if (action.type === `SEND_FEEDBACK`) {
     return  {...state, ...action.payload}
   }
+
+  if (action.type === `CLEAR_FEEDBACK`) {
+    return  {}
+  }
+
   return state;
 };
 

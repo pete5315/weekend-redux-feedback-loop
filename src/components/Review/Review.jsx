@@ -1,25 +1,30 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import axios from 'axios';
+
 
 function Review() {
-  const currentInfo = useSelector((store) => store.currentInfo);
+
+  const dispatch=useDispatch();
+  const currentInfo = useSelector((store) => store);
   const history = useHistory();
   const handleSubmit = () => {
     console.log(currentInfo);
     axios
       .post("/api/send", {
-        feeling: currentInfo.feeling,
-        understanding: currentInfo.understanding,
-        support: currentInfo.support,
-        comments: currentInfo.comments
+        currentInfo
       })
       .then((response) => {
         console.log("Client POST success", response);
+        history.push("/submitted");
+        dispatch({
+          type: "CLEAR_FEEDBACK",
+        })
       })
       .catch((error) => {
         console.log("Error in client side POST", error);
+        alert("Server error, please try again later.")
       });
-    history.push("/form");
   };
 
   return (

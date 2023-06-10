@@ -32,7 +32,6 @@ function Understanding() {
   return (
     <div>
       <h1>How well are you understanding the content?</h1>
-      <form onSubmit={handleSubmit}>
         <label>Understanding (1-5)? </label>
         <input
           onChange={(event) => handleNewUnderstanding(event.target.value, event)}
@@ -40,8 +39,7 @@ function Understanding() {
           placeholder="name"
           value={understanding.understanding}
         />
-        <button type="submit">Next</button>
-      </form>
+        <button onClick={handleSubmit} type="submit">Next</button>
     </div>
   );
 }

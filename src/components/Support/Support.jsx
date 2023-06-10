@@ -32,7 +32,6 @@ function Support() {
   return (
     <div>
       <h1>How well are you being supported?</h1>
-      <form onSubmit={handleSubmit}>
         <label>Support (1-5)? </label>
         <input
           onChange={(event) => handleNewSupport(event.target.value, event)}
@@ -40,8 +39,7 @@ function Support() {
           placeholder="name"
           value={support.support}
         />
-        <button type="submit">Next</button>
-      </form>
+        <button onClick={handleSubmit} type="submit">Next</button>
     </div>
   );
 }

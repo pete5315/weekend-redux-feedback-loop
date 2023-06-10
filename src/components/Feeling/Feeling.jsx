@@ -30,7 +30,6 @@ function Feelings() {
   return (
     <div>
       <h1>How are you feeling today?</h1>
-      <form onSubmit={handleSubmit}>
         <label>Feeling? </label>
         <input
           onChange={(event) => handleNewFeeling(event.target.value, event)}
@@ -38,8 +37,7 @@ function Feelings() {
           placeholder="name"
           value={feeling.feeling}
         />
-        <button type="submit">Next</button>
-      </form>
+        <button onClick={handleSubmit} type="submit">Next</button>
     </div>
   );
 }

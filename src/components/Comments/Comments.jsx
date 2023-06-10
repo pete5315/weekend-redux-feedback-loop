@@ -30,7 +30,6 @@ function Comments() {
   return (
     <div>
       <h1>Any comments you want to leave?</h1>
-      <form onSubmit={handleSubmit}>
         <label>Comments? </label>
         <input
           onChange={(event) => handleNewComments(event.target.value, event)}
@@ -38,8 +37,7 @@ function Comments() {
           placeholder="name"
           value={comments.comments}
         />
-        <button type="submit">Next</button>
-      </form>
+        <button onClick={handleSubmit} type="submit">Next</button>
     </div>
   );
 }

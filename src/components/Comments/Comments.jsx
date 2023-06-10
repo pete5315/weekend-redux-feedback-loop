@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 
@@ -7,8 +7,19 @@ function Comments() {
 
   let [comments, setNewComments] = useState({ comments: "" });
   const dispatch=useDispatch();
-  const history = useHistory()
+  const history = useHistory();
+  const currentInfo = useSelector((store) => store);
 
+
+  useEffect(() => {
+    let x = currentInfo.currentInfo.comments;
+    if (x === undefined) {
+      return;
+    }
+    let newFeedback = {};
+    newFeedback.comments = x;
+    setNewComments(newFeedback);
+  }, []);
 
   const handleNewComments = (value, event) => {
     event.preventDefault();
@@ -18,7 +29,11 @@ function Comments() {
   }
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(comments.comments);
+    if (comments.comments==='') {
+      alert('comment required');
+      return
+    }
     dispatch({
       type: "SEND_FEEDBACK",
       payload: comments

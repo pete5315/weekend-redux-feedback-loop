@@ -27,23 +27,23 @@ function RatingComponent({ feedbackText }) {
     let newFeedback = {};
     newFeedback[feedbackText.type] = value;
     console.log(newFeedback);
-    setNewFeedback({
+    setNewFeedback(
       newFeedback,
-    });
+    );
   };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(feedback);
     let checker = feedback[feedbackText.type];
-    if (checker === "") {
+    console.log(checker);
+    if (checker === "" || checker === undefined) {
       alert("empty input field");
       return;
     } else if (checker < 1 || checker > 5) {
       alert("please use the 1-5 rating scale");
       return;
     }
-    feedback = feedback.newFeedback;
-    console.log(feedback);
+    console.log('trying to send feedback: ',feedback);
     dispatch({
       type: "SEND_FEEDBACK",
       payload: feedback,

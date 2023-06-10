@@ -4,10 +4,11 @@ import axios from 'axios';
 
 
 function Review() {
-
+    
   const dispatch=useDispatch();
   const currentInfo = useSelector((store) => store);
   const history = useHistory();
+
   const handleSubmit = () => {
     console.log(currentInfo);
     axios
@@ -32,10 +33,11 @@ function Review() {
       <h1>Review your feedback</h1>
       <br></br>
       <br></br>
-      <p>Feelings: {currentInfo.feeling}</p>
-      <p>Understanding: {currentInfo.understanding}</p>
-      <p>Support: {currentInfo.support}</p>
-      <p>Comments: {currentInfo.comments}</p>
+      <p>Feelings: {currentInfo.currentInfo.feeling}</p>
+      <p>Understanding: {currentInfo.currentInfo.understanding}</p>
+      <p>Support: {currentInfo.currentInfo.support}</p>
+      <p>Comments: {currentInfo.currentInfo.comments}</p>
+      <button onClick={() => history.push('/comments')}>Back</button>
       <button onClick={handleSubmit}>SUBMIT</button>
     </div>
   );

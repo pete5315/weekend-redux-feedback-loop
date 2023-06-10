@@ -38,6 +38,8 @@ function Comments() {
           value={comments.comments}
         />
         <button onClick={handleSubmit} type="submit">Next</button>
+        <br></br>
+        <button onClick={() => history.push('/support')}>Back</button>
     </div>
   );
 }

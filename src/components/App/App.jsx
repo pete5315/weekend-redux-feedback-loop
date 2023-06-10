@@ -1,11 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
 import Comments from '../Comments/Comments';
-import Feeling from '../Feeling/Feeling'
 import Submitted from '../Submitted/Submitted';
-import Support from '../Support/Support';
-import Understanding from '../Understanding/Understanding';
 import Review from '../Review/Review'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import RatingComponent from '../RatingComponent/RatingComponent';
@@ -17,18 +13,21 @@ function App() {
   const feedbackText = {
     feeling: {
       sentence: "How are you feeling today?",
-      type: "Feeling",
-      nextFeedback: "understanding"
+      type: "feeling",
+      nextFeedback: "understanding",
+      previousFeedback: ""
     },
     understanding: {
       sentence: "How well are you understanding the content?",
-      type: "Understanding",
-      nextFeedback: "support"
+      type: "understanding",
+      nextFeedback: "support",
+      previousFeedback: ""
     },
     support: {
       sentence: "How well are you being supported?",
-      type: "Support",
-      nextFeedback: "comments"
+      type: "support",
+      nextFeedback: "comments",
+      previousFeedback: "understanding"
     },
   };
 

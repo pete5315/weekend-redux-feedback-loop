@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 
 function Comments() {
@@ -46,15 +49,17 @@ function Comments() {
     <div>
       <h1>Any comments you want to leave?</h1>
         <label>Comments? </label>
-        <input
+        <TextField
           onChange={(event) => handleNewComments(event.target.value, event)}
           type="text"
           placeholder="name"
           value={comments.comments}
+          sx={{marginRight: "10px"}}
         />
-        <button onClick={handleSubmit} type="submit">Next</button>
+        <Button onClick={handleSubmit} type="submit" variant="contained">Next</Button>
         <br></br>
-        <button onClick={() => history.push('/support')}>Back</button>
+        <br></br>
+        <Button onClick={() => history.push('/support')} variant="contained">Back</Button>
     </div>
   );
 }

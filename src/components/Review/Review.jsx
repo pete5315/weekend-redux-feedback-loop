@@ -1,17 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import axios from "axios";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
 
 function Review() {
   const dispatch = useDispatch();
   const currentInfo = useSelector((store) => store);
   const history = useHistory();
+  const style = {
+    width: "100%",
+    maxWidth: 360,
+    bgcolor: "background.paper",
+  };
 
   const handleSubmit = () => {
     console.log(currentInfo.currentInfo);
     console.log(Object.keys(currentInfo.currentInfo));
     if (Object.keys(currentInfo.currentInfo).length !== 4) {
-      alert('You must complete all feedback');
+      alert("You must complete all feedback");
       return;
     }
     axios
@@ -33,15 +45,53 @@ function Review() {
 
   return (
     <div>
-      <h1>Review your feedback</h1>
-      <br></br>
-      <br></br>
-      <p onClick={() => history.push("/")}>Feelings: {currentInfo.currentInfo.feeling}</p>
-      <p onClick={() => history.push("/understanding")}>Understanding: {currentInfo.currentInfo.understanding}</p>
-      <p onClick={() => history.push("/support")}>Support: {currentInfo.currentInfo.support}</p>
-      <p onClick={() => history.push("/comments")}>Comments: {currentInfo.currentInfo.comments}</p>
-      <button onClick={() => history.push("/comments")}>Back</button>
-      <button onClick={handleSubmit}>SUBMIT</button>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <h1>Review your feedback</h1>
+        <br></br>
+        <br></br>
+
+        <List
+          sx={style}
+          component="nav"
+          aria-label="mailbox folders"
+          justifyContent="center"
+        >
+          <ListItem button onClick={() => history.push("/")}>
+            <ListItemText
+              primary={`Feelings: ${currentInfo.currentInfo.feeling}`}
+            />
+          </ListItem>
+          <Divider />
+          <ListItem button divider onClick={() => history.push("/")}>
+            <ListItemText
+              primary={`Understanding: ${currentInfo.currentInfo.understanding}`}
+            />
+          </ListItem>
+          <ListItem button onClick={() => history.push("/")}>
+            <ListItemText
+              primary={`Support: ${currentInfo.currentInfo.support}`}
+            />
+          </ListItem>
+          <Divider light />
+          <ListItem button onClick={() => history.push("/")}>
+            <ListItemText
+              primary={`Comments: ${currentInfo.currentInfo.comments}`}
+            />
+          </ListItem>
+        </List>
+        <Button onClick={handleSubmit} variant="contained">
+          SUBMIT
+        </Button>
+        <br></br>
+        <Button onClick={() => history.push("/comments")} variant="contained">
+          Back
+        </Button>
+      </Box>
     </div>
   );
 }

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
 
 function RatingComponent({ feedbackText }) {
   let [feedback, setNewFeedback] = useState({});
@@ -10,16 +14,12 @@ function RatingComponent({ feedbackText }) {
 
   useEffect(() => {
     let x = currentInfo.currentInfo[feedbackText.type];
-    console.log(x);
-    console.log(feedbackText.type);
     if (x === undefined) {
       return;
     }
     let newFeedback = {};
     newFeedback[feedbackText.type] = x;
-    console.log(newFeedback);
     setNewFeedback(newFeedback);
-    console.log(feedback);
   }, []);
 
   const handleNewFeedback = (value, event) => {
@@ -27,9 +27,7 @@ function RatingComponent({ feedbackText }) {
     let newFeedback = {};
     newFeedback[feedbackText.type] = value;
     console.log(newFeedback);
-    setNewFeedback(
-      newFeedback,
-    );
+    setNewFeedback(newFeedback);
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,7 +41,7 @@ function RatingComponent({ feedbackText }) {
       alert("please use the 1-5 rating scale");
       return;
     }
-    console.log('trying to send feedback: ',feedback);
+    console.log("trying to send feedback: ", feedback);
     dispatch({
       type: "SEND_FEEDBACK",
       payload: feedback,
@@ -58,21 +56,31 @@ function RatingComponent({ feedbackText }) {
         {feedbackText.type.charAt(0).toUpperCase() + feedbackText.type.slice(1)}{" "}
         (1-5)?{" "}
       </label>
-      <input
+      <TextField
         onChange={(event) => handleNewFeedback(event.target.value, event)}
         type="number"
         placeholder="name"
         min="1"
         max="5"
         value={feedback[feedbackText.type]}
+        sx={{ marginRight: "10px" }}
+        
       />
-      <button onClick={handleSubmit} type="submit">
+      <Button
+        onClick={handleSubmit}
+        type="submit"
+        variant="contained"
+      >
         Next
-      </button>
+      </Button>
       <br></br>
-      <button onClick={() => history.push("/" + feedbackText.previousFeedback)}>
+      <br></br>
+      <Button
+        onClick={() => history.push("/" + feedbackText.previousFeedback)}
+        variant="contained"
+      >
         Back
-      </button>
+      </Button>
     </div>
   );
 }

@@ -8,12 +8,12 @@ import logger from 'redux-logger';
 
 
 
-const feedback = (state = [], action) => {
-  if (action.type === `GET_FEEDBACK`) {
-    return  action.payload
-  }
-  return state;
-};
+// const feedback = (state = [], action) => {
+//   if (action.type === `GET_FEEDBACK`) {
+//     return  action.payload
+//   }
+//   return state;
+// };
 
 const currentInfo = (state = [], action) => {
   if (action.type === `SEND_FEEDBACK`) {
@@ -29,7 +29,7 @@ const currentInfo = (state = [], action) => {
 
 const store = createStore(
   combineReducers({
-    feedback,
+    // feedback,
     currentInfo,
   }),
   applyMiddleware(logger),

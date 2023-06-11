@@ -5,7 +5,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-
 function RatingComponent({ feedbackText }) {
   let [feedback, setNewFeedback] = useState({});
   const dispatch = useDispatch();
@@ -29,6 +28,7 @@ function RatingComponent({ feedbackText }) {
     console.log(newFeedback);
     setNewFeedback(newFeedback);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(feedback);
@@ -64,13 +64,8 @@ function RatingComponent({ feedbackText }) {
         max="5"
         value={feedback[feedbackText.type]}
         sx={{ marginRight: "10px" }}
-        
       />
-      <Button
-        onClick={handleSubmit}
-        type="submit"
-        variant="contained"
-      >
+      <Button onClick={handleSubmit} type="submit" variant="contained">
         Next
       </Button>
       <br></br>

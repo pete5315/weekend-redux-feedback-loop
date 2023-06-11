@@ -5,6 +5,7 @@ import Submitted from '../Submitted/Submitted';
 import Review from '../Review/Review'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import RatingComponent from '../RatingComponent/RatingComponent';
+import Admin from '../Admin/Admin'
 
 
 function App() {
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route path="/submitted">
             <Submitted />
+          </Route>
+          <Route path="/admin">
+            <Admin />
           </Route>
       </form>
 

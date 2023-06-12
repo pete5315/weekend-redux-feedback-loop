@@ -6,11 +6,13 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 function RatingComponent({ feedbackText }) {
-  let [feedback, setNewFeedback] = useState({});
   const dispatch = useDispatch();
   const history = useHistory();
+  //local state for comments as they are updated on the DOM
+  let [feedback, setNewFeedback] = useState({});
+  //need store information to load on page
   const currentInfo = useSelector((store) => store);
-
+  //useEffect loads state if it already exists on the store
   useEffect(() => {
     let x = currentInfo.currentInfo[feedbackText.type];
     if (x === undefined) {
@@ -20,7 +22,7 @@ function RatingComponent({ feedbackText }) {
     newFeedback[feedbackText.type] = x;
     setNewFeedback(newFeedback);
   }, []);
-
+  //updates local state as data is entered on DOM
   const handleNewFeedback = (value, event) => {
     event.preventDefault();
     let newFeedback = {};
@@ -28,7 +30,7 @@ function RatingComponent({ feedbackText }) {
     console.log(newFeedback);
     setNewFeedback(newFeedback);
   };
-
+  //sends local state to store on submit
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(feedback);

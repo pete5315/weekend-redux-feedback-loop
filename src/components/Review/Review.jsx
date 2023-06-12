@@ -11,17 +11,18 @@ import Box from "@mui/material/Box";
 
 function Review() {
   const dispatch = useDispatch();
-  const currentInfo = useSelector((store) => store);
   const history = useHistory();
+  //need to get info from Store to load on DOM
+  const currentInfo = useSelector((store) => store);
+  //formatting for the MUI list
   const style = {
     width: "100%",
     maxWidth: 360,
     bgcolor: "background.paper",
   };
-
+  //initiates post to server if all feedback is complete
   const handleSubmit = () => {
-    console.log(currentInfo.currentInfo);
-    console.log(Object.keys(currentInfo.currentInfo));
+    //incomplete data handling
     if (Object.keys(currentInfo.currentInfo).length !== 4) {
       alert("You must complete all feedback");
       return;

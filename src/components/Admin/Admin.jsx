@@ -1,26 +1,26 @@
+import axios from "axios";
+import { useState } from "react";
 import { useHistory } from "react-router-dom/";
+import { useEffect } from "react";
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import axios from "axios";
-import { useState } from "react";
 
 function Admin() {
+  //set up a local state for storing the information from the server
   let [feedbackHistory, setHistory] = useState([]);
   const history = useHistory();
-
+  //useEffect to load the history from the server
   useEffect(() => {
     getHistory();
   }, []);
-
+  //function to get the history from the server
   function getHistory() {
-    console.log("get");
     axios
       .get("/api/history")
       .then((response) => {
@@ -32,7 +32,7 @@ function Admin() {
         alert("Server error, please try again later.");
       });
   }
-
+  //function to delete information from the server
   function handleDelete(id) {
     axios
       .delete("/api/delete/" + id)
@@ -45,17 +45,13 @@ function Admin() {
         alert("Server error, please try again later.");
       });
   }
-
+  //function to update the flagged status on the server
   function handleFlag(id, flag) {
-    console.log(flag);
-    flag = Boolean(flag);
-    console.log(flag);
-    flag = !flag;
-    console.log(flag);
+    flag = !Boolean(flag);
     axios
-      .put(`/api/flag/${id}`, { flag }) //id tells the server what data to update, data has the new number of likes
+      .put(`/api/flag/${id}`, { flag })
       .then((response) => {
-        getHistory(); //update the DOM after we update the number of likes on the server
+        getHistory();
       })
       .catch((err) => {
         //error catching
@@ -65,6 +61,7 @@ function Admin() {
   }
 
   return (
+    //Table elements below are from Material UI
     <div>
       <h1>Feedback Results!</h1>
       <TableContainer>

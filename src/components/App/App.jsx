@@ -1,47 +1,44 @@
-import React from 'react';
-import './App.css';
-import Comments from '../Comments/Comments';
-import Submitted from '../Submitted/Submitted';
-import Review from '../Review/Review'
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import RatingComponent from '../RatingComponent/RatingComponent';
-import Admin from '../Admin/Admin'
-
+import React from "react";
+import "./App.css";
+import Comments from "../Comments/Comments";
+import Submitted from "../Submitted/Submitted";
+import Review from "../Review/Review";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+import RatingComponent from "../RatingComponent/RatingComponent";
+import Admin from "../Admin/Admin";
 
 function App() {
-
-
+  //text/addresses that will be used to create the unique form components using the RatingComponent module
   const feedbackText = {
     feeling: {
       sentence: "How are you feeling today?",
       type: "feeling",
       nextFeedback: "understanding",
-      previousFeedback: ""
+      previousFeedback: "",
     },
     understanding: {
       sentence: "How well are you understanding the content?",
       type: "understanding",
       nextFeedback: "support",
-      previousFeedback: ""
+      previousFeedback: "",
     },
     support: {
       sentence: "How well are you being supported?",
       type: "support",
       nextFeedback: "comments",
-      previousFeedback: "understanding"
+      previousFeedback: "understanding",
     },
   };
 
   return (
-    <div className='App'>
-      <Router>        
-
-      <header className='App-header'>
-        <h1 className='App-title'>Feedback!</h1>
-        <h4>Don't forget it!</h4>
-      </header>
-      <form>
-        <Route exact path="/">
+    <div className="App">
+      <Router>
+        <header className="App-header">
+          <h1 className="App-title">Feedback!</h1>
+          <h4>Don't forget it!</h4>
+        </header>
+        <form>
+          <Route exact path="/">
             <RatingComponent feedbackText={feedbackText.feeling} />
           </Route>
           <Route path="/understanding">
@@ -62,8 +59,7 @@ function App() {
           <Route path="/admin">
             <Admin />
           </Route>
-      </form>
-
+        </form>
       </Router>
     </div>
   );

@@ -56,7 +56,8 @@ router.put('/flag/:id', (req, res) => {
   console.log(req.params);
   console.log(req.body);
   const feedbackId = req.params.id;
-  let flag = req.body.data;
+  let flag = req.body.flag;
+  console.log(flag);
   let sqlText = `UPDATE "feedback" SET "flagged" = $1 WHERE id = $2;`;
   //send the query to SQL
   pool.query(sqlText, [flag, feedbackId])

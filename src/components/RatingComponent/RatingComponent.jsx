@@ -9,7 +9,7 @@ function RatingComponent({ feedbackText }) {
   const dispatch = useDispatch();
   const history = useHistory();
   //local state for comments as they are updated on the DOM
-  let [feedback, setNewFeedback] = useState({});
+  let [feedback, setNewFeedback] = useState({[feedbackText.type]: ""});
   //need store information to load on page
   const currentInfo = useSelector((store) => store);
   //useEffect loads state if it already exists on the store

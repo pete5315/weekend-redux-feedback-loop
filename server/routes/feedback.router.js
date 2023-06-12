@@ -52,7 +52,7 @@ router.delete("/delete/:id", (req, res) => {
 }); // END POST Route
 
 // PUT Route
-router.put('/flag/:id', (req, res) => {
+router.put("/flag/:id", (req, res) => {
   console.log(req.params);
   console.log(req.body);
   const feedbackId = req.params.id;
@@ -60,16 +60,18 @@ router.put('/flag/:id', (req, res) => {
   console.log(flag);
   let sqlText = `UPDATE "feedback" SET "flagged" = $1 WHERE id = $2;`;
   //send the query to SQL
-  pool.query(sqlText, [flag, feedbackId])
-  //if SQL doesn't error
-  .then( (result) => {
-      console.log('Like added')
+  pool
+    .query(sqlText, [flag, feedbackId])
+    //if SQL doesn't error
+    .then((result) => {
+      console.log("Like added");
       res.sendStatus(200);
-  })
-  //if SQL DOES error
-  .catch( (error) => {
+    })
+    //if SQL DOES error
+    .catch((error) => {
       console.log(`Error making database query ${sqlText}`, error);
       res.sendStatus(500);
-  })}); // END PUT Route
+    });
+}); // END PUT Route
 
 module.exports = router;

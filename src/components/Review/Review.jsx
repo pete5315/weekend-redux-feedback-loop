@@ -68,18 +68,18 @@ function Review() {
             />
           </ListItem>
           <Divider />
-          <ListItem button divider onClick={() => history.push("/")}>
+          <ListItem button divider onClick={() => history.push("/understanding")}>
             <ListItemText
               primary={`Understanding: ${currentInfo.currentInfo.understanding}`}
             />
           </ListItem>
-          <ListItem button onClick={() => history.push("/")}>
+          <ListItem button onClick={() => history.push("support")}>
             <ListItemText
               primary={`Support: ${currentInfo.currentInfo.support}`}
             />
           </ListItem>
           <Divider light />
-          <ListItem button onClick={() => history.push("/")}>
+          <ListItem button onClick={() => history.push("/comments")}>
             <ListItemText
               primary={`Comments: ${currentInfo.currentInfo.comments}`}
             />

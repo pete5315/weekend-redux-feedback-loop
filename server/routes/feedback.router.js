@@ -23,7 +23,7 @@ router.post("/send", async (req, res) => {
 router.get("/history", (req, res) => {
   console.log("get");
   pool
-    .query('SELECT * FROM "feedback";')
+    .query('SELECT * FROM "feedback" ORDER BY "flagged" DESC;')
     .then((result) => {
       res.send(result.rows);
     })
